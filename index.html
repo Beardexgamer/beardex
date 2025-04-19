@@ -444,11 +444,11 @@ form.search-bar:hover .fa-search {
         </div>
       </div>
       <div class="graffiti-search">
-  <form class="search-bar">
-  <input type="search" placeholder="Search the streets..." />
-  <i class="fa fa-search"></i>
-</form>
-</div>
+        <form class="search-bar" onsubmit="searchAnime(event)">
+          <input type="search" id="animeSearch" placeholder="Search the streets..." />
+          <i class="fa fa-search"></i>
+        </form>
+      </div>
     </div>
     <div class="menu-links">
       <a href="Ongoing Anime.html">ONGOING ANIME</a>
@@ -623,7 +623,7 @@ form.search-bar:hover .fa-search {
 </head>
 <body>
 
-  <h2>123</h2>
+  <h2>ONGOING Anime</h2>
 
   <!-- Swiper -->
   <div class="swiper mySwiper">
@@ -788,21 +788,22 @@ form.search-bar:hover .fa-search {
 </head>
 <body>
 
-  <h2>Buddy Daddies</h2>
+  <section id="buddy-daddies">
+    <h2>Buddy Daddies</h2>
 
   <!-- Swiper -->
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       <!-- Slide 1 -->
-      <a href="https://www.dailymotion.com/embed/video/x9i5c0m" class="swiper-slide" target="_blank">
+      <a href="https://www.dailymotion.com/embed/video/x9i52wu" class="swiper-slide" target="_blank">
         <div class="responsive-iframe">
-          <iframe src="https://www.dailymotion.com/embed/video/x9i5c0m" allowfullscreen></iframe>
-        </div>
-        <div class="card-content">
-          <h3>Episode 1</h3>
-          <p>Buddy Daddies</p>
-        </div>
-      </a>
+            <img src="https://i.ibb.co/46tjJYz/download.jpg">
+          </div>
+          <div class="card-content">
+            <h3>Episode 1</h3>
+            <p>Buddy Daddies</p>
+          </div>
+          </a>
 
       <!-- Slide 2 -->
       <a href="https://www.dailymotion.com/embed/video/x9i69vg" class="swiper-slide" target="_blank">
@@ -848,9 +849,9 @@ form.search-bar:hover .fa-search {
       </a>
 
 <!-- Slide 6 -->
-<a href="https://rumble.com/embed/v6q4a85/?pub=2oiu3u" class="swiper-slide" target="_blank">
+<a href="https://strtape.tech/v/lGGDjQqKwYT7QD3/Buddy_Daddies_S01E06_720p_x265_10bit_WEB_DL_Multi_Audio_Hindi_English.mkv" class="swiper-slide" target="_blank">
   <div class="responsive-iframe">
-    <iframe src="https://rumble.com/embed/v6q4a85/?pub=2oiu3u" width="640" height="360" allowfullscreen></iframe>
+    <iframe src="https://strtape.tech/v/lGGDjQqKwYT7QD3/Buddy_Daddies_S01E06_720p_x265_10bit_WEB_DL_Multi_Audio_Hindi_English.mkv" width="640" height="360" allowfullscreen></iframe>
   </div>
   <div class="card-content">
     <h3>Episode 6</h3>
@@ -892,7 +893,7 @@ form.search-bar:hover .fa-search {
       </a>
 
 <!-- Slide 10 -->
-      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
+      <a href="https://archive.org/embed/buddy-daddies-s-01-e-10-720p-x-265-10bit-web-dl-multi-audio-hindi-english" class="swiper-slide" target="_blank">
         <div class="responsive-iframe">
           <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
         </div>
@@ -914,14 +915,30 @@ form.search-bar:hover .fa-search {
       </a>
 
 <!-- Slide 12 -->
-      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
-        <div class="responsive-iframe">
-          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
-        </div>
-        <div class="card-content">
-          <h3>Episode 12</h3>
-          <p>Buddy Daddies</p>
-        </div>
+<a href="https://strtape.tech/e/wkQrOkB7PXFJwMe/" class="swiper-slide" target="_blank">
+  <div class="responsive-iframe">
+    <iframe src="https://strtape.tech/e/wkQrOkB7PXFJwMe/" allowfullscreen frameborder="0"></iframe>
+  </div>
+  <div class="card-content">
+    <h3>Episode 12</h3>
+    <p>Buddy Daddies</p>
+  </div>
+</a>
+
+<script>
+  function loadVideo(videoId, element) {
+      // Create an iframe element dynamically
+      var iframe = document.createElement('iframe');
+      iframe.src = "https://www.dailymotion.com/embed/video/" + videoId + "?autoplay=1";
+      iframe.allowfullscreen = true;
+      iframe.style.width = "100%";
+      iframe.style.height = "200px"; // You can adjust the height as needed
+
+      // Hide the thumbnail image and replace it with the iframe
+      element.querySelector('.responsive-iframe').innerHTML = '';
+      element.querySelector('.responsive-iframe').appendChild(iframe);
+  }
+</script>
       </a>
     </div>
 
@@ -1057,6 +1074,42 @@ end here
 
 </body>
 </html>
+<script>
+  // Your swiper script or other script here
+  const swiper = new Swiper('.swiper-container', {
+    slidesPerView: 3,
+    // other configuration options for Swiper
+  });
+</script>
+
+<script>
+  function searchAnime(event) {
+    event.preventDefault();
+    const query = document.getElementById("animeSearch").value.toLowerCase().trim();
+
+    const animeMap = {
+      "buddy daddies": "buddy-daddies",
+      "naruto": "naruto",
+      "one piece": "one-piece",
+      "bleach": "bleach"
+    };
+
+    const targetId = animeMap[query];
+
+    if (targetId) {
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      alert("Anime not found!");
+    }
+  }
+</script>
+
+</body>
+</html>
+
 
 <!-- Bottom Legal Info -->
 <div style="text-align: center; margin-top: 40px; font-size: 12px; color: #888;">
