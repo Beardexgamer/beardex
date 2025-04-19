@@ -111,7 +111,7 @@
       position: relative;
       cursor: pointer;
     }
-o
+
     .icon-wrapper i {
       color: white;
       transition: transform 0.3s ease, color 0.3s ease;
@@ -447,11 +447,12 @@ form.search-bar:hover .fa-search {
 </form>
 </div>
     </div>
-    <<div class="menu-links">
-  <a href="shop-by-video.html">ONGOING ANIME</a>
-  <a href="https://instagram.com/beardexgamer" target="_blank">MOVIE</a>
-  <a href="corporate-catalog.html">SERIES</a>
-  <a href="track-order.html">GENRE</a>
+    <div class="menu-links">
+      <a href="Ongoing Anime.html">ONGOING ANIME</a>
+      <a href="Series.html">SERIES</a>
+      <a href="genre.html">GENRE</a>
+      <a href="movie.html">MOVIEW</a>
+      
   <!-- <a href="return-request.html">RETURN REQUEST</a> --> <!-- ❌ Remove this line -->
   <a href="visit-store.html">VISIT YOUTUBE</a>
   <a href="download-app.html">DOWNLOAD APP</a>
@@ -533,16 +534,523 @@ form.search-bar:hover .fa-search {
     });
   });
 </script>
-DOCTYPE html>
 
-<html>
+<!--section 1 end here-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>Hello, World!</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anime Episodes Swipe</title>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.8rem;
+    }
+
+    .swiper {
+      padding: 20px 0;
+    }
+
+    .swiper-slide {
+      background-color: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      width: 100%;
+      max-width: 360px;
+      margin: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .swiper-slide:hover {
+      transform: scale(1.05);
+    }
+
+    .responsive-iframe {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+
+    .responsive-iframe iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h3 {
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+
+    .card-content p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    /* Responsive override */
+    @media (min-width: 768px) {
+      .swiper-slide {
+        width: 300px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>
-    Hello, World!
-  </h1>
+
+  <h2>123</h2>
+
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <a href="https://www.dailymotion.com/embed/video/x9i52wu" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i52wu" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 1</h3>
+          <p>The Unaware Alter</p>
+        </div>
+      </a>
+
+      <!-- Slide 2 -->
+      <a href="https://www.dailymotion.com/embed/video/x9i539y" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i539y" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 2</h3>
+          <p>The Unaware Alter</p>
+        </div>
+      </a>
+
+      <!-- Slide 3 -->
+      <a href="https://www.dailymotion.com/embed/video/x9i53c0" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i53c0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 3</h3>
+          <p>The Unaware Alter</p>
+        </div>
+      </a>
+
+      <!-- Slide 4 -->
+      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 4</h3>
+          <p>I Parry Everything</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Swiper Init -->
+  <script>
+    new Swiper(".mySwiper", {
+      slidesPerView: 1.1,
+      spaceBetween: 20,
+      grabCursor: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buddy Daddies</title>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.8rem;
+    }
+
+    .swiper {
+      padding: 20px 0;
+    }
+
+    .swiper-slide {
+      background-color: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      width: 100%;
+      max-width: 360px;
+      margin: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .swiper-slide:hover {
+      transform: scale(1.05);
+    }
+
+    .responsive-iframe {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+
+    .responsive-iframe iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h3 {
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+
+    .card-content p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    /* Responsive override */
+    @media (min-width: 768px) {
+      .swiper-slide {
+        width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Buddy Daddies</h2>
+
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <a href="https://www.dailymotion.com/embed/video/x9i5c0m" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i5c0m" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 1</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+
+      <!-- Slide 2 -->
+      <a href="https://www.dailymotion.com/embed/video/x9i69vg" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i69vg" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 2</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+
+      <!-- Slide 3 -->
+      <a href="https://www.dailymotion.com/embed/video/x9i69vc" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i69vc" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 3</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+
+      <!-- Slide 4 -->
+      <a href="https://www.dailymotion.com/embed/video/x9i69ve" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i69ve" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 4</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+      <!-- Slide 5 -->
+      <a href="https://www.dailymotion.com/embed/video/x9i69va" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i69va" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 5</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+
+<!-- Slide 6 -->
+      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 6</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+
+<!-- Slide 7 -->
+      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 7</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+
+<!-- Slide 8 -->
+      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 8</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+
+<!-- Slide 9 -->
+      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 9</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+
+<!-- Slide 10 -->
+      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 10</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+
+<!-- Slide 11 -->
+      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 11</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+
+<!-- Slide 12 -->
+      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
+        <div class="responsive-iframe">
+          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 12</h3>
+          <p>Buddy Daddies</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Swiper Init -->
+  <script>
+    new Swiper(".mySwiper", {
+      slidesPerView: 1.1,
+      spaceBetween: 20,
+      grabCursor: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+end here
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anime Episodes Swipe</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <style>
+    body { margin: 0; padding: 0; font-family: sans-serif; background-color: #000; color: #fff; }
+    h2 { text-align: center; margin: 20px 0; font-size: 1.8rem; }
+    .swiper { padding: 20px 0; }
+    .swiper-slide { background-color: #111; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); width: 100%; max-width: 360px; margin: auto; transition: transform 0.3s ease; }
+    .swiper-slide:hover { transform: scale(1.05); }
+    .responsive-iframe { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; }
+    .responsive-iframe iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .card-content { padding: 15px; }
+    .card-content h3 { margin-bottom: 5px; font-size: 1.1rem; }
+    .card-content p { font-size: 0.9rem; color: #ccc; }
+    @media (min-width: 768px) { .swiper-slide { width: 300px; } }
+  </style>
+</head>
+<body>
+
+  <h2>Watch Your Fav Anime in Hindi</h2>
+
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <a href="videoPage.html?id=1" class="swiper-slide">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i52wu" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 1</h3>
+          <p>The Unaware Alter</p>
+        </div>
+      </a>
+
+      <!-- Slide 2 -->
+      <a href="videoPage.html?id=2" class="swiper-slide">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i539y" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 2</h3>
+          <p>The Unaware Alter</p>
+        </div>
+      </a>
+
+      <!-- Slide 3 -->
+      <a href="videoPage.html?id=3" class="swiper-slide">
+        <div class="responsive-iframe">
+          <iframe src="https://www.dailymotion.com/embed/video/x9i53c0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 3</h3>
+          <p>The Unaware Alter</p>
+        </div>
+      </a>
+
+      <!-- Slide 4 -->
+      <a href="videoPage.html?id=4" class="swiper-slide">
+        <div class="responsive-iframe">
+          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+          <h3>Episode 4</h3>
+          <p>I Parry Everything</p>
+        </div>
+      </a>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper(".mySwiper", {
+      slidesPerView: 1.1,
+      spaceBetween: 20,
+      grabCursor: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
