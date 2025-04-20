@@ -335,81 +335,100 @@ form.search-bar:hover .fa-search {
     80% { text-shadow: 2px 0 white; }
     100% { text-shadow: 0 0 white; }
   }
+  * Category Section (Adding padding for spacing) */
+.category-section {
+  padding: 40px;
+  text-align: center;
+}
 
-    .category-section {
-      padding: 40px;
-      text-align: center;
-    }
+/* Swipe Wrapper for horizontal scroll */
+.swipe-wrapper {
+  display: flex;                  /* Flexbox to make items align horizontally */
+  gap: 20px;                      /* Space between cards */
+  overflow-x: auto;               /* Allow horizontal scroll */
+  overflow-y: hidden;             /* Hide vertical scroll */
+  margin-top: 20px;
+  padding-bottom: 10px;           /* Padding at the bottom to allow smooth scroll */
+  scroll-snap-type: x mandatory;  /* Scroll snaps to the next card */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
+}
 
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
+/* Styling for each Grid Card (Video Card) */
+.grid-card {
+  background-color: #111;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;               /* Minimum width for cards */
+  max-width: 300px;               /* Max width for cards */
+  flex: 0 0 auto;                 /* Prevent flex-grow/shrink */
+  scroll-snap-align: start;       /* Align each card to the start during scroll */
+}
 
-    .grid-card {
-      background-color: #111;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-      display: flex;
-      flex-direction: column; /* Ensures content is aligned vertically */
-      height: 80%; /* Ensures card takes the full height of its grid item */
-    }
+/* Hover Effect on Cards */
+.grid-card:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+  box-shadow: 0 30px 45px rgba(0, 0, 0, 0.7);
+}
 
-    
-    .grid-card:hover {
-      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-      box-shadow: 0 30px 45px rgba(0, 0, 0, 0.7);
-    }
+/* Optional: Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.swipe-wrapper::-webkit-scrollbar {
+  display: none;
+}
 
-     .grid-card {
-      background-color: #111;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-      display: flex;
-      flex-direction: column; /* Makes sure content is aligned vertically */
-      height: 80%; /* Ensures card takes the full height of its grid item */
-    }
-    .grid-card iframe {
-      width: 100%;
-      height: 200%; /* Ensures iframe takes the full height of the card */
-      border: none;
-      border-radius: 10px;
-    }
-    
-    .card-content {
-      padding: 15px;
-      flex-grow: 1; /* Makes sure text area takes remaining space */
-    }
+.swipe-wrapper {
+  touch-action: pan-x;
+}
 
-    .card-content {
-      padding: 15px;
-    }
+.swipe-wrapper {
+  scroll-behavior: smooth;
+}
 
-    .card-content h3 {
-      margin-bottom: 10px;
-    }
+/* Styling for iframe to make it responsive inside cards */
+.grid-card iframe {
+  width: 100%;
+  height: 200px;  /* Set iframe height */
+  border: none;
+  border-radius: 10px 10px 0 0;
+}
 
-    .card-content p {
-      font-size: 14px;
-      color: #ccc;
-    }
+/* Card Content Styling */
+.card-content {
+  padding: 15px;
+  flex-grow: 1;  /* Ensures content grows to fill remaining space */
+}
 
-    @media screen and (max-width: 768px) {
-      .nav-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+.card-content h3 {
+  margin-bottom: 10px;
+}
 
-      .menu-links, .icons, .social-login {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-    }
+.card-content p {
+  font-size: 14px;
+  color: #ccc;
+}
+
+   /* Mobile Specific Changes */
+@media screen and (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Ensure horizontal scroll for small screens */
+  .menu-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;             /* Prevent wrapping */
+    overflow-x: auto;              /* Allow horizontal scroll if needed */
+    justify-content: flex-start;  /* Align links to start */
+  }
+
+  .menu-links a {
+    white-space: nowrap;           /* Prevent text wrapping inside links */
+  }
+}
   </style>
 </head>
 <body>
@@ -436,9 +455,9 @@ form.search-bar:hover .fa-search {
       <div class="dropdown">
         <button class="category-btn">Anime list ▼</button>
         <div class="dropdown-content">
-          <a href="mobile-skin.html" target="_blank">Mobile Skins</a>
-          <a href="laptop-skins.html"></a>
-          <a href="console-skins.html"></a>
+          <a href="the unaware atelier master.html" target="_blank">The unaware atelier master</a>
+          <a href="I parry Everything.html" target="_blank">I parry Everything</a>></a>
+          <a href="console-skins.html" ></a>
           <a href="card-skins.html"></a>
           <a href="custom-skins.html"></a>
         </div>
@@ -448,64 +467,58 @@ form.search-bar:hover .fa-search {
           <input type="search" id="animeSearch" placeholder="Search the streets..." />
           <i class="fa fa-search"></i>
         </form>
+        <ul id="suggestionsList" style="list-style-type: none; padding: 0;"></ul>
       </div>
     </div>
     <div class="menu-links">
       <a href="Ongoing Anime.html">ONGOING ANIME</a>
       <a href="Series.html">SERIES</a>
-      <a href="genre.html">GENRE</a>
       <a href="movie.html">MOVIEW</a>
-      
   <!-- <a href="return-request.html">RETURN REQUEST</a> --> <!-- ❌ Remove this line -->
-  <a href="visit-store.html">VISIT YOUTUBE</a>
-  <a href="download-app.html">DOWNLOAD APP</a>
+  <a href="visit-store.html">YOUTUBE</a>
+  <a href="download-app.html">APP</a>
 </div>
   </div>
   <section class="category-section">
     <h2>Watch Your Fav Anime in Hindi</h2>
-    <div class="grid-container">
-      <!-- Full Grid video card -->
-      <a href="mobile-skin.html" class="grid-card product-card" data-name="Mobile Skins iPhone Samsung">
-        <iframe src="https://www.dailymotion.com/embed/video/x9i52wu" frameborder="0" allowfullscreen></iframe>
+    
+    <!-- Swipe wrapper for horizontal scroll -->
+    <div class="swipe-wrapper">
+      <!-- Video cards inside the swipe-wrapper -->
+      <a href="the unaware atelier master.html" class="grid-card product-card" data-name="_blank">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/go-oGs6w9h8?si=VNBIu2SvCcTcxewl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay-0; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="card-content">
+          <h3>Episode 1-3</h3>
+          <p>The Unaware Atelier Master long</p>
+        </div>
+      </a>
+  
+      <a href="I parry Everything.html" class="grid-card product-card" data-name="Mobile Skins iPhone Samsung">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/MZzGmbep43I?si=Tttj1v-l0SqMIRDq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay=0; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <div class="card-content">
           <h3>Episode 1</h3>
-          <p>The Unaware Alter</p>
+          <p>I parry Everything</p>
         </div>
       </a>
+      
       <a href="mobile-skin.html" class="grid-card product-card" data-name="Mobile Skins iPhone Samsung">
-        <iframe src="https://www.dailymotion.com/embed/video/x9i539y" frameborder="0" allowfullscreen></iframe>
-        <div class="card-content">
-          <h3>Episode 2</h3>
-          <p>The Unaware Alter</p>
-        </div>
-      </a>
-      <a href="mobile-skin.html" class="grid-card product-card" data-name="Mobile Skins iPhone Samsung">
-        <iframe src="https://www.dailymotion.com/embed/video/x9i53c0" frameborder="0" allowfullscreen></iframe>
-        <div class="card-content">
-          <h3>Episode 2</h3>
-          <p>The Unaware Alter</p>
-        </div>
-      <a href="card-skins.html" class="grid-card product-card">
         <iframe 
-    src="https://www.youtube.com/embed/i9abeSnidx0" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen 
-    style="width:100%; height:200px; border-radius:10px;">
-  </iframe>
+          src="https://www.dailymotion.com/embed/video/x9i53c0?autoplay=0&mute=1" 
+          frameborder="0" 
+          allow="fullscreen" 
+          allowfullscreen>
+        </iframe>
         <div class="card-content">
-          <h3>eposide 2</h3>
-          <p>I parry everything</p>
+          <h3>Episode 3</h3>
+          <p>The Unaware Alter</p>
         </div>
       </a>
-      <a href="custom-skins.html" class="grid-card product-card"><img src="" alt="Custom Skins">
-        <div class="card-content">
-          <h3>eposide 2</h3>
-          <p>I parry everything</p>
-        </div>
-      </a>
+      
+  
+      <!-- Add more cards here -->
     </div>
   </section>
+  
 
 <!-- Add the script here -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
@@ -515,6 +528,58 @@ form.search-bar:hover .fa-search {
     speed: 400,
     glare: true,
     "max-glare": 0.2,
+  });
+</script>
+
+<!-- Add the swipe functionality script -->
+<script>
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  const swipeWrapper = document.querySelector('.swipe-wrapper');
+
+  swipeWrapper.addEventListener('mousedown', (e) => {
+    isDown = true;
+    swipeWrapper.classList.add('active');
+    startX = e.pageX - swipeWrapper.offsetLeft;
+    scrollLeft = swipeWrapper.scrollLeft;
+  });
+
+  swipeWrapper.addEventListener('mouseleave', () => {
+    isDown = false;
+    swipeWrapper.classList.remove('active');
+  });
+
+  swipeWrapper.addEventListener('mouseup', () => {
+    isDown = false;
+    swipeWrapper.classList.remove('active');
+  });
+
+  swipeWrapper.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - swipeWrapper.offsetLeft;
+    const walk = (x - startX) * 2; // Scroll fast
+    swipeWrapper.scrollLeft = scrollLeft - walk;
+  });
+
+  // For touch devices
+  swipeWrapper.addEventListener('touchstart', (e) => {
+    isDown = true;
+    startX = e.touches[0].pageX - swipeWrapper.offsetLeft;
+    scrollLeft = swipeWrapper.scrollLeft;
+  });
+
+  swipeWrapper.addEventListener('touchend', () => {
+    isDown = false;
+  });
+
+  swipeWrapper.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    const x = e.touches[0].pageX - swipeWrapper.offsetLeft;
+    const walk = (x - startX) * 2; // Scroll fast
+    swipeWrapper.scrollLeft = scrollLeft - walk;
   });
 </script>
 
@@ -623,7 +688,7 @@ form.search-bar:hover .fa-search {
 </head>
 <body>
 
-  <h2>ONGOING Anime</h2>
+  <h2>ONGOING Animes</h2>
 
   <!-- Swiper -->
   <div class="swiper mySwiper">
@@ -631,7 +696,7 @@ form.search-bar:hover .fa-search {
       <!-- Slide 1 -->
       <a href="https://www.dailymotion.com/embed/video/x9i52wu" class="swiper-slide" target="_blank">
         <div class="responsive-iframe">
-          <iframe src="https://www.dailymotion.com/embed/video/x9i52wu" allowfullscreen></iframe>
+          <iframe src="https://odysee.com/$/embed/_---Anime_Hindi_Flix-S1EP-01-%283%29:5" allowfullscreen></iframe>
         </div>
         <div class="card-content">
           <h3>Episode 1</h3>
@@ -642,7 +707,7 @@ form.search-bar:hover .fa-search {
       <!-- Slide 2 -->
       <a href="https://www.dailymotion.com/embed/video/x9i539y" class="swiper-slide" target="_blank">
         <div class="responsive-iframe">
-          <iframe src="https://www.dailymotion.com/embed/video/x9i539y" allowfullscreen></iframe>
+          <iframe src="https://odysee.com/$/embed/--Anime_System--The-Unaware-Atelier-Meister-S01E02---720p-%281%29:2" allowfullscreen></iframe>
         </div>
         <div class="card-content">
           <h3>Episode 2</h3>
@@ -651,9 +716,9 @@ form.search-bar:hover .fa-search {
       </a>
 
       <!-- Slide 3 -->
-      <a href="https://www.dailymotion.com/embed/video/x9i53c0" class="swiper-slide" target="_blank">
+      <a href="https://www.dailymotion.com/embed/video/" class="swiper-slide" target="_blank">
         <div class="responsive-iframe">
-          <iframe src="https://www.dailymotion.com/embed/video/x9i53c0" allowfullscreen></iframe>
+          <iframe src="https://odysee.com/$/embed/--Anime_Hindi_Flix-S1EP-03-%283%29:f" allowfullscreen></iframe>
         </div>
         <div class="card-content">
           <h3>Episode 3</h3>
@@ -664,7 +729,7 @@ form.search-bar:hover .fa-search {
       <!-- Slide 4 -->
       <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
         <div class="responsive-iframe">
-          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+          <iframe src="https://odysee.com/$/embed/The-Unaware-Atelier-Meister-S01E04--Hindi-_720P-HD:1" allowfullscreen></iframe>
         </div>
         <div class="card-content">
           <h3>Episode 4</h3>
@@ -817,15 +882,16 @@ form.search-bar:hover .fa-search {
       </a>
 
       <!-- Slide 3 -->
-      <a href="https://www.dailymotion.com/embed/video/x9i69vc" class="swiper-slide" target="_blank">
+      <a href="javascript:void(0);" class="swiper-slide" onclick="loadVideo('x9i69vc', this)">
         <div class="responsive-iframe">
-          <iframe src="https://www.dailymotion.com/embed/video/x9i69vc" allowfullscreen></iframe>
+            <!-- Thumbnail image before click -->
+            <img src="https://i.ibb.co/46tjJYz/download.jpg" alt="Episode 3">
         </div>
         <div class="card-content">
-          <h3>Episode 3</h3>
-          <p>Buddy Daddies</p>
+            <h3>Episode 3</h3>
+            <p>Buddy Daddies</p>
         </div>
-      </a>
+    </a>
 
       <!-- Slide 4 -->
       <a href="https://www.dailymotion.com/embed/video/x9i69ve" class="swiper-slide" target="_blank">
@@ -929,7 +995,7 @@ form.search-bar:hover .fa-search {
   function loadVideo(videoId, element) {
       // Create an iframe element dynamically
       var iframe = document.createElement('iframe');
-      iframe.src = "https://www.dailymotion.com/embed/video/" + videoId + "?autoplay=1";
+      iframe.src = "https://www.dailymotion.com/embed/video/" + videoId + "?autoplay=0";
       iframe.allowfullscreen = true;
       iframe.style.width = "100%";
       iframe.style.height = "200px"; // You can adjust the height as needed
@@ -974,10 +1040,51 @@ form.search-bar:hover .fa-search {
   <script src="https://aiharsoreersu.net/act/files/tag.min.js?z=9235741" data-cfasync="false" async></script>
 </body>
 </html>
+<!-- Section 4 -->
+<section id="section-4">Section 4</section>
+<h2>Section 4 Anime</h2>
 
+<!-- Swiper Slider -->
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+  
+    <!-- Episode 1 -->
+    <a href="section-4-ep1.html" class="swiper-slide" target="_blank">
+      <div class="responsive-iframe">
+        <iframe src="https://odysee.com/$/embed/sample-ep1:abc" allowfullscreen></iframe>
+      </div>
+      <div class="card-content">
+        <h3>Episode 1</h3>
+        <p>Section 4 Subtitle</p>
+      </div>
+    </a>
 
-end here
+    <!-- Episode 2 -->
+    <a href="section-4-ep2.html" class="swiper-slide" target="_blank">
+      <div class="responsive-iframe">
+        <iframe src="https://odysee.com/$/embed/sample-ep2:def" allowfullscreen></iframe>
+      </div>
+      <div class="card-content">
+        <h3>Episode 2</h3>
+        <p>Section 4 Subtitle</p>
+      </div>
+    </a>
 
+    <!-- Episode 3 -->
+    <a href="section-4-ep3.html" class="swiper-slide" target="_blank">
+      <div class="responsive-iframe">
+        <iframe src="https://odysee.com/$/embed/sample-ep3:xyz" allowfullscreen></iframe>
+      </div>
+      <div class="card-content">
+        <h3>Episode 3</h3>
+        <p>Section 4 Subtitle</p>
+      </div>
+    </a>
+
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+<!-- Section 4 end -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1001,15 +1108,16 @@ end here
 </head>
 <body>
 
-  <h2>Watch Your Fav Anime in Hindi</h2>
+  <section id="the-unaware-atelier-master">The Unaware Atelier Master Section</section>
+  <h2>The Unaware atelier master</h2>
 
   <!-- Swiper -->
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       <!-- Slide 1 -->
-      <a href="videoPage.html?id=1" class="swiper-slide">
+      <a href="the unaware atelier master.html" class="swiper-slide" target="_blank">
         <div class="responsive-iframe">
-          <iframe src="https://www.dailymotion.com/embed/video/x9i52wu" allowfullscreen></iframe>
+          <iframe src="https://odysee.com/$/embed/_---Anime_Hindi_Flix-S1EP-01-%283%29:5" allowfullscreen></iframe>
         </div>
         <div class="card-content">
           <h3>Episode 1</h3>
@@ -1018,9 +1126,9 @@ end here
       </a>
 
       <!-- Slide 2 -->
-      <a href="videoPage.html?id=2" class="swiper-slide">
+      <a href="https://www.dailymotion.com/embed/video/x9i539y" class="swiper-slide" target="_blank">
         <div class="responsive-iframe">
-          <iframe src="https://www.dailymotion.com/embed/video/x9i539y" allowfullscreen></iframe>
+          <iframe src="https://odysee.com/$/embed/--Anime_System--The-Unaware-Atelier-Meister-S01E02---720p-%281%29:2" allowfullscreen></iframe>
         </div>
         <div class="card-content">
           <h3>Episode 2</h3>
@@ -1029,9 +1137,9 @@ end here
       </a>
 
       <!-- Slide 3 -->
-      <a href="videoPage.html?id=3" class="swiper-slide">
+      <a href="https://www.dailymotion.com/embed/video/" class="swiper-slide" target="_blank">
         <div class="responsive-iframe">
-          <iframe src="https://www.dailymotion.com/embed/video/x9i53c0" allowfullscreen></iframe>
+          <iframe src="https://odysee.com/$/embed/--Anime_Hindi_Flix-S1EP-03-%283%29:f" allowfullscreen></iframe>
         </div>
         <div class="card-content">
           <h3>Episode 3</h3>
@@ -1040,9 +1148,9 @@ end here
       </a>
 
       <!-- Slide 4 -->
-      <a href="videoPage.html?id=4" class="swiper-slide">
+      <a href="https://www.youtube.com/embed/i9abeSnidx0" class="swiper-slide" target="_blank">
         <div class="responsive-iframe">
-          <iframe src="https://www.youtube.com/embed/i9abeSnidx0" allowfullscreen></iframe>
+          <iframe src="https://odysee.com/$/embed/The-Unaware-Atelier-Meister-S01E04--Hindi-_720P-HD:1" allowfullscreen></iframe>
         </div>
         <div class="card-content">
           <h3>Episode 4</h3>
@@ -1076,43 +1184,96 @@ end here
   </script>
 
 </body>
-</html>
+
+<!-- Your swiper script or other script here -->
 <script>
-  // Your swiper script or other script here
   const swiper = new Swiper('.swiper-container', {
     slidesPerView: 3,
     // other configuration options for Swiper
   });
 </script>
+<!-- Include Fuse.js -->
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
 
 <script>
+  // Anime list with exact titles and corresponding section IDs
+  const animeList = [
+    { title: "Naruto", id: "naruto" },
+    { title: "One Piece", id: "one-piece" },
+    { title: "Bleach", id: "bleach" },
+    { title: "The Unaware Atelier Master", id: "the-unaware-atelier-master" },
+    { title: "Buddy Daddies", id: "buddy-daddies" },
+    // Add more anime sections here
+  ];
+
+  // Fuse.js configuration
+  const fuse = new Fuse(animeList, {
+    keys: ['title'],
+    threshold: 0.4, // A higher value allows more leniency in spelling
+  });
+
+  // Search function for handling input
   function searchAnime(event) {
-    event.preventDefault();
-    const query = document.getElementById("animeSearch").value.toLowerCase().trim();
+    event.preventDefault(); // Stop form submission
 
-    const animeMap = {
-      "buddy daddies": "buddy-daddies",
-      "naruto": "naruto",
-      "one piece": "one-piece",
-      "bleach": "bleach"
-    };
+    const input = document.getElementById("animeSearch").value.trim().toLowerCase(); // Get the input and make it lowercase
 
-    const targetId = animeMap[query];
+    if (!input) return;
 
-    if (targetId) {
-      const target = document.getElementById(targetId);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+    // Search for matching titles using Fuse.js
+    const results = fuse.search(input);
+
+    if (results.length > 0) {
+      const sectionId = results[0].item.id; // Get the ID of the first matched anime
+      const section = document.getElementById(sectionId); // Find the section by ID
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the section
       }
     } else {
-      alert("Anime not found!");
+      alert("Anime not found!"); // If no match is found, show alert
+    }
+
+    // Hide suggestions once search is triggered
+    document.getElementById('suggestionsList').style.display = 'none';
+  }
+
+  // Function to show suggestions as the user types
+  function showSuggestions() {
+    const input = document.getElementById("animeSearch").value.trim().toLowerCase();
+    const suggestionsList = document.getElementById('suggestionsList');
+
+    // Clear current suggestions
+    suggestionsList.innerHTML = '';
+
+    if (!input) {
+      suggestionsList.style.display = 'none';
+      return;
+    }
+
+    // Search for matching titles using Fuse.js
+    const results = fuse.search(input);
+
+    // Show matching suggestions
+    if (results.length > 0) {
+      suggestionsList.style.display = 'block';
+      results.forEach(result => {
+        const li = document.createElement('li');
+        li.style.cursor = 'pointer'; // Make it look clickable
+        li.innerText = result.item.title;
+        li.onclick = () => {
+          // On click, scroll to the corresponding section
+          const section = document.getElementById(result.item.id);
+          section.scrollIntoView({ behavior: "smooth" });
+          suggestionsList.style.display = 'none'; // Hide suggestions after selection
+          document.getElementById("animeSearch").value = result.item.title; // Optional: set search field to selected suggestion
+        };
+        suggestionsList.appendChild(li);
+      });
+    } else {
+      suggestionsList.style.display = 'none';
     }
   }
 </script>
-
-</body>
-</html>
-
 
 <!-- Bottom Legal Info -->
 <div style="text-align: center; margin-top: 40px; font-size: 12px; color: #888;">
@@ -1120,4 +1281,7 @@ end here
   <p>©2025 BeardexAnime®. India’s hinid dubbed anime adda.</p>
   <p>All Logos & Trademarks Belong To Their Respective Owners.</p>
 </div>
-</footer>
+
+<!-- Closing body and html tags -->
+</body>
+</html>
