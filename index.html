@@ -455,9 +455,9 @@ form.search-bar:hover .fa-search {
       <div class="dropdown">
         <button class="category-btn">Anime list ▼</button>
         <div class="dropdown-content">
-          <a href="the unaware atelier master.html" target="_blank">The unaware atelier master</a>
-          <a href="I parry Everything.html" target="_blank">I parry Everything</a>></a>
-          <a href="console-skins.html" ></a>
+          <a href="Donghua hindi explanation.html" target="_blank">Donghua hindi explanation</a>
+          <a href="Ongoing Anime" target="_blank">Ongoing anime</a>
+          <a href="Movie" target="_blank" >Anime Movie</a>
           <a href="card-skins.html"></a>
           <a href="custom-skins.html"></a>
         </div>
@@ -470,12 +470,9 @@ form.search-bar:hover .fa-search {
         <ul id="suggestionsList" style="list-style-type: none; padding: 0;"></ul>
       </div>
     </div>
-    <div class="menu-links">
-      <a href="Ongoing Anime.html">ONGOING ANIME</a>
-      <a href="Series.html">SERIES</a>
-      <a href="movie.html">MOVIEW</a>
+    <div class="menu-links">     
   <!-- <a href="return-request.html">RETURN REQUEST</a> --> <!-- ❌ Remove this line -->
-  <a href="visit-store.html">YOUTUBE</a>
+  <a href="https://youtube.com/@beardexgamer">YOUTUBE</a>
   <a href="download-app.html">APP</a>
 </div>
   </div>
@@ -502,30 +499,31 @@ form.search-bar:hover .fa-search {
       </a>
       
       <a href="mobile-skin.html" class="grid-card product-card" data-name="Mobile Skins iPhone Samsung">
-    <iframe 
-      src="https://www.dailymotion.com/embed/video/x9i53c0?autoplay=0&mute=1" 
-      frameborder="0" 
-      allow="fullscreen" 
-      allowfullscreen>
-    </iframe>
-    <div class="card-content">
-      <h3>Episode 3</h3>
-      <p>The Unaware Alter</p>
-    </div>
-  </a>
-
+        <iframe 
+          src="https://www.dailymotion.com/embed/video/x9i53c0?autoplay=0&mute=1" 
+          frameborder="0" 
+          allow="fullscreen" 
+          allowfullscreen>
+        </iframe>
+        <div class="card-content">
+          <h3>Episode 3</h3>
+          <p>The Unaware Alter</p>
+        </div>
+      </a>
+      
   <!-- Monetag Ad Start (Outside the <a>) -->
-  <div class="ad-container" style="margin-top: 20px; text-align: center;">
-    <script>
-      (function(s,u,z,p){
-        s.src = u;
-        s.setAttribute('data-zone', z);
-        (p || document.body).appendChild(s);
-      })(document.createElement('script'), 'https://shebudriftaiter.net/tag.min.js', 9239866, document.body || document.documentElement);
-    </script>
-  </div>
-  <!-- Monetag Ad End -->
-</section>
+    <div class="ad-container" style="margin-top: 20px; text-align: center;">
+      <script>
+        (function(s,u,z,p){
+          s.src = u;
+          s.setAttribute('data-zone', z);
+          (p || document.body).appendChild(s);
+        })(document.createElement('script'), 'https://shebudriftaiter.net/tag.min.js', 9239866, document.body || document.documentElement);
+      </script>
+    </div>
+    <!-- Monetag Ad End -->
+  </section>
+  
 
 <!-- Add the script here -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
@@ -538,38 +536,64 @@ form.search-bar:hover .fa-search {
   });
 </script>
 
+<!-- Pagination -->
+<div class="swiper-pagination"></div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <!-- Add the swipe functionality script -->
 <script>
   let isDown = false;
-  let startX;
-  let scrollLeft;
+let startX;
+let scrollLeft;
 
-  const swipeWrapper = document.querySelector('.swipe-wrapper');
+const swipeWrapper = document.querySelector('.swipe-wrapper');
 
-  swipeWrapper.addEventListener('mousedown', (e) => {
-    isDown = true;
-    swipeWrapper.classList.add('active');
-    startX = e.pageX - swipeWrapper.offsetLeft;
-    scrollLeft = swipeWrapper.scrollLeft;
-  });
+swipeWrapper.addEventListener('mousedown', (e) => {
+  isDown = true;
+  swipeWrapper.classList.add('active');
+  startX = e.pageX - swipeWrapper.offsetLeft;
+  scrollLeft = swipeWrapper.scrollLeft;
+});
 
-  swipeWrapper.addEventListener('mouseleave', () => {
-    isDown = false;
-    swipeWrapper.classList.remove('active');
-  });
+swipeWrapper.addEventListener('mouseleave', () => {
+  isDown = false;
+  swipeWrapper.classList.remove('active');
+});
 
-  swipeWrapper.addEventListener('mouseup', () => {
-    isDown = false;
-    swipeWrapper.classList.remove('active');
-  });
+swipeWrapper.addEventListener('mouseup', () => {
+  isDown = false;
+  swipeWrapper.classList.remove('active');
+});
 
-  swipeWrapper.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - swipeWrapper.offsetLeft;
-    const walk = (x - startX) * 2; // Scroll fast
-    swipeWrapper.scrollLeft = scrollLeft - walk;
-  });
+swipeWrapper.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - swipeWrapper.offsetLeft;
+  const walk = (x - startX) * 2; // Scroll fast
+  swipeWrapper.scrollLeft = scrollLeft - walk;
+});
+
+// For touch devices
+swipeWrapper.addEventListener('touchstart', (e) => {
+  isDown = true;
+  startX = e.touches[0].pageX - swipeWrapper.offsetLeft;
+  scrollLeft = swipeWrapper.scrollLeft;
+});
+
+swipeWrapper.addEventListener('touchend', () => {
+  isDown = false;
+});
+
+swipeWrapper.addEventListener('touchmove', (e) => {
+  if (!isDown) return;
+  const x = e.touches[0].pageX - swipeWrapper.offsetLeft;
+  const walk = (x - startX) * 2; // Scroll fast
+  swipeWrapper.scrollLeft = scrollLeft - walk;
+});
+
 
   // For touch devices
   swipeWrapper.addEventListener('touchstart', (e) => {
@@ -1199,6 +1223,7 @@ form.search-bar:hover .fa-search {
     // other configuration options for Swiper
   });
 </script>
+
 <!-- Include Fuse.js -->
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
 
@@ -1216,40 +1241,34 @@ form.search-bar:hover .fa-search {
   // Fuse.js configuration
   const fuse = new Fuse(animeList, {
     keys: ['title'],
-    threshold: 0.4, // A higher value allows more leniency in spelling
+    threshold: 0.4,
   });
 
-  // Search function for handling input
   function searchAnime(event) {
-    event.preventDefault(); // Stop form submission
+    event.preventDefault();
 
-    const input = document.getElementById("animeSearch").value.trim().toLowerCase(); // Get the input and make it lowercase
-
+    const input = document.getElementById("animeSearch").value.trim().toLowerCase();
     if (!input) return;
 
-    // Search for matching titles using Fuse.js
     const results = fuse.search(input);
 
     if (results.length > 0) {
-      const sectionId = results[0].item.id; // Get the ID of the first matched anime
-      const section = document.getElementById(sectionId); // Find the section by ID
+      const sectionId = results[0].item.id;
+      const section = document.getElementById(sectionId);
       if (section) {
-        section.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the section
+        section.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      alert("Anime not found!"); // If no match is found, show alert
+      alert("Anime not found!");
     }
 
-    // Hide suggestions once search is triggered
     document.getElementById('suggestionsList').style.display = 'none';
   }
 
-  // Function to show suggestions as the user types
   function showSuggestions() {
     const input = document.getElementById("animeSearch").value.trim().toLowerCase();
     const suggestionsList = document.getElementById('suggestionsList');
 
-    // Clear current suggestions
     suggestionsList.innerHTML = '';
 
     if (!input) {
@@ -1257,22 +1276,19 @@ form.search-bar:hover .fa-search {
       return;
     }
 
-    // Search for matching titles using Fuse.js
     const results = fuse.search(input);
 
-    // Show matching suggestions
     if (results.length > 0) {
       suggestionsList.style.display = 'block';
       results.forEach(result => {
         const li = document.createElement('li');
-        li.style.cursor = 'pointer'; // Make it look clickable
+        li.style.cursor = 'pointer';
         li.innerText = result.item.title;
         li.onclick = () => {
-          // On click, scroll to the corresponding section
           const section = document.getElementById(result.item.id);
           section.scrollIntoView({ behavior: "smooth" });
-          suggestionsList.style.display = 'none'; // Hide suggestions after selection
-          document.getElementById("animeSearch").value = result.item.title; // Optional: set search field to selected suggestion
+          suggestionsList.style.display = 'none';
+          document.getElementById("animeSearch").value = result.item.title;
         };
         suggestionsList.appendChild(li);
       });
@@ -1280,6 +1296,30 @@ form.search-bar:hover .fa-search {
       suggestionsList.style.display = 'none';
     }
   }
+
+  // ✅ Universal video thumbnail click-to-play handler
+  document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll(".video-card");
+
+    cards.forEach(card => {
+      const videoUrl = card.getAttribute("data-video");
+      const thumbnail = card.querySelector(".video-thumbnail");
+
+      if (videoUrl && thumbnail) {
+        thumbnail.addEventListener("click", function () {
+          card.innerHTML = `
+            <iframe 
+              src="${videoUrl}?autoplay=1&mute=1" 
+              frameborder="0" 
+              allow="fullscreen" 
+              allowfullscreen 
+              style="width: 100%; height: 100%;">
+            </iframe>
+          `;
+        });
+      }
+    });
+  });
 </script>
 
 <!-- Bottom Legal Info -->
