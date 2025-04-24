@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Search with Grid & Pagination</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .search-container {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            z-index: 1000;
+            display: none;
+        }
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+        #search-results {
+            margin-top: 20px;
+        }
+        /* Grid layout for anime results */
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 items per row */
+            gap: 15px;
+        }
+        .anime-item {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        .anime-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .page-button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .page-button.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .no-results {
+            text-align: center;
+            color: red;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search anime..." onkeyup="showSuggestions(this.value)" onkeydown="handleEnter(event)">
+        <div id="suggestions" class="suggestions"></div>
+    </div>
+
+    <div id="search-results"></div>
+
+    <script>
+        // Sample anime data categorized by genre with image URLs
+        const animeData = {
+            "Action": [
+                {name: "Attack on Titan", image: "https://i.ibb.co/Fb4CmZWr/as-a-reincarnated-aristocrat-ill-use-my-appraisal-skill-to-rise-in-the-world-2024.jpg", link: "https://odysee.com/$/embed/As-a-Reincarnated-AristocratS01E09-720P--Multi-Audio--Esub:8"},
+                {name: "Naruto", image: "https://via.placeholder.com/200x300?text=Naruto", link: "#"},
+                {name: "One Punch Man", image: "https://via.placeholder.com/200x300?text=One+Punch+Man", link: "#"},
+                {name: "Demon Slayer", image: "https://via.placeholder.com/200x300?text=Demon+Slayer", link: "#"},
+                {name: "My Hero Academia", image: "https://via.placeholder.com/200x300?text=My+Hero+Academia", link: "#"}
+            ],
+            "Adventure": [
+                {name: "One Piece", image: "https://via.placeholder.com/200x300?text=One+Piece", link: "#"},
+                {name: "Fullmetal Alchemist", image: "https://via.placeholder.com/200x300?text=Fullmetal+Alchemist", link: "#"},
+                {name: "Made in Abyss", image: "https://via.placeholder.com/200x300?text=Made+in+Abyss", link: "#"}
+            ],
+            "Romance": [
+                {name: "Your Name", image: "https://via.placeholder.com/200x300?text=Your+Name", link: "#"},
+                {name: "Toradora", image: "https://via.placeholder.com/200x300?text=Toradora", link: "#"},
+                {name: "Clannad", image: "https://via.placeholder.com/200x300?text=Clannad", link: "#"}
+            ],
+        };
+
+        // Flattened anime list for name-based search
+        const allAnime = Object.values(animeData).flat();
+
+        // Pagination Variables
+        let currentPage = 1;
+        const itemsPerPage = 6;
+
+        function showSuggestions(query) {
+            const suggestionsDiv = document.getElementById('suggestions');
+            suggestionsDiv.innerHTML = ''; // Clear previous suggestions
+            if (!query) {
+                suggestionsDiv.style.display = 'none'; // Hide if query is empty
+                return;
+            }
+
+            // Filter genres based on the input query
+            const filteredGenres = Object.keys(animeData).filter(genre => genre.toLowerCase().includes(query.toLowerCase()));
+            const filteredAnime = allAnime.filter(anime => anime.name.toLowerCase().includes(query.toLowerCase()));
+
+            if (filteredGenres.length === 0 && filteredAnime.length === 0) {
+                suggestionsDiv.style.display = 'none';
+                return;
+            }
+
+            suggestionsDiv.style.display = 'block';
+
+            // Show genre suggestions
+            filteredGenres.forEach(genre => {
+                const div = document.createElement('div');
+                div.classList.add('suggestion-item');
+                div.innerHTML = `<strong>Genre: </strong>${genre}`;
+                div.onclick = function() {
+                    document.getElementById('search').value = genre;
+                    suggestionsDiv.style.display = 'none';
+                    displayResults(genre); // Show anime results for selected genre
+                };
+                suggestionsDiv.appendChild(div);
+            });
+
+            // Show anime title suggestions
+            filteredAnime.forEach(anime => {
+                const div = document.createElement('div');
+                div.classList.add('suggestion-item');
+                div.innerHTML = anime.name;
+                div.onclick = function() {
+                    document.getElementById('search').value = anime.name;
+                    suggestionsDiv.style.display = 'none';
+                    displayResults(anime.name); // Show anime results for selected title
+                };
+                suggestionsDiv.appendChild(div);
+            });
+        }
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                const query = document.getElementById('search').value;
+                displayResults(query); // Display results when Enter is pressed
+            }
+        }
+
+        function displayResults(query) {
+            const resultsDiv = document.getElementById('search-results');
+            resultsDiv.innerHTML = '';
+
+            // Filter genres and anime based on query
+            const matchingGenres = Object.keys(animeData).filter(genre => genre.toLowerCase().includes(query.toLowerCase()));
+            const matchingAnime = allAnime.filter(anime => anime.name.toLowerCase().includes(query.toLowerCase()));
+
+            // Combine results from genres and anime matches
+            let results = [];
+
+            matchingGenres.forEach(genre => {
+                results.push(...animeData[genre]);
+            });
+            results.push(...matchingAnime);
+
+            // If no results match
+            if (results.length === 0) {
+                resultsDiv.innerHTML = '<div class="no-results">No results found</div>';
+                return;
+            }
+
+            // Paginate results
+            const totalPages = Math.ceil(results.length / itemsPerPage);
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, results.length);
+            const paginatedResults = results.slice(startIndex, endIndex);
+
+            // Display paginated results in grid
+            const gridDiv = document.createElement('div');
+            gridDiv.classList.add('anime-grid');
+
+            paginatedResults.forEach(anime => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('anime-item');
+                itemDiv.innerHTML = `
+                    <a href="${anime.link}" target="_blank">
+                        <img src="${anime.image}" alt="${anime.name}">
+                        <div>${anime.name}</div>
+                    </a>
+                `;
+                gridDiv.appendChild(itemDiv);
+            });
+
+            resultsDiv.appendChild(gridDiv);
+
+            // Pagination controls
+            displayPagination(totalPages);
+        }
+
+        function displayPagination(totalPages) {
+            const paginationDiv = document.createElement('div');
+            paginationDiv.classList.add('pagination');
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('span');
+                pageButton.classList.add('page-button');
+                pageButton.textContent = i;
+                if (i === currentPage) {
+                    pageButton.classList.add('active');
+                }
+                pageButton.onclick = function() {
+                    currentPage = i;
+                    const query = document.getElementById('search').value;
+                    displayResults(query);
+                };
+                paginationDiv.appendChild(pageButton);
+            }
+
+            document.getElementById('search-results').appendChild(paginationDiv);
+        }
+    </script>
+</body>
+</html>
